@@ -17,7 +17,7 @@ class Jobsearch{
 //  console.log('count:'+count);
   //}).catch(err=>console.log('ERROR:'+err));
 
-  fetch(`https://api.github.com/users/${uname}/repos`).then(response=>response.json()).then(item=>{
+  fetch(`https://api.github.com/users/${uname}`).then(response=>response.json()).then(item=>{
     console.log(item);
 
   }).catch(err=>console.log('ERROR:'+err));
