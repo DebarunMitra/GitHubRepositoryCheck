@@ -1,0 +1,126 @@
+<!-- Author: Debarun Mitra
+Application Name: JobSearchOo
+Objective: Create a front end application for job search -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>GitRover</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">GitRover</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+             <!-- <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li> -->
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link One</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link Two</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link Three</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="search-text">
+          <label for="">User Name:</label>
+          <input id="uname" type="text" name="" value="">
+        </div>
+        <div class="search-text">
+          <label for="">To Date:</label>
+          <input id="todate" type="date" name="" value="">
+        </div>
+        <div class="search-text">
+          <label for="">From Date:</label>
+          <input id="fromdate" type="date" name="" value="">
+        </div>
+        <!-- <div class="search-text">
+          <label for="">Company Name:</label>
+          <input id="cname" type="text" name="" value="">
+        </div> -->
+        <div class="search-text">
+          <input id="search" type="button" name="" value="Search">
+        </div>
+      </div>
+      <hr>
+        <h1 class="mt-4">Profile Search</h1>
+        <hr>
+        <div id="jobContent" class="job-content">
+
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-lg-8 col-md-6">
+                        <h3 class="mb-0 text-truncated">Mike Anamendolla</h3>
+                        <p class="lead">Web / UI Designer</p>
+                        <p>
+                            I love to read, hang out with friends, watch football, listen to music, and learn new things.
+                        </p>
+                        <p> <span class="badge badge-info tags">html5</span>
+                            <span class="badge badge-info tags">css3</span>
+                            <span class="badge badge-info tags">nodejs</span>
+                        </p>
+                    </div>
+                    <div class="col-12 col-lg-4 col-md-6 text-center">
+                        <img src="https://robohash.org/68.186.255.198.png" alt="" class="mx-auto rounded-circle img-fluid">
+                        <br>
+                        <ul class="list-inline ratings text-center" title="Ratings">
+                            <li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
+                            </li>
+                            <li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
+                            </li>
+                            <li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
+                            </li>
+                            <li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
+                            </li>
+                            <li class="list-inline-item"><a href="#"><span class="fa fa-star"></span></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <h3 class="mb-0">20.7K</h3>
+                        <small>Followers</small>
+                        <button class="btn btn-block btn-outline-success"><span class="fa fa-plus-circle"></span> Follow</button>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <h3 class="mb-0">245</h3>
+                        <small>Following</small>
+                        <button class="btn btn-outline-info btn-block"><span class="fa fa-user"></span> View Profile</button>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <h3 class="mb-0">43</h3>
+                        <small>Snippets</small>
+                        <button type="button" class="btn btn-outline-primary btn-block"><span class="fa fa-gear"></span> Options</button>
+                    </div>
+                    <!--/col-->
+                </div>
+                <!--/row-->
+            </div>
+            <!--/card-block-->
+        </div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
