@@ -4,18 +4,23 @@
 class Jobsearch{
   getSearchResult(uname,todate,fromdate){
 //    const monthNo={"Jan":1,"Feb":2,"Mar":3,"Apr":4,"May":5,"Jun":6,"Jul":7,"Aug":8,"Sep":9,"Oct":10,"Nov":11,"Dec":12};
-    let count=0,regexUname,regexInitdate,regexLastdate,regexExp=/\d+/g;
+  //  let count=0,regexUname,regexInitdate,regexLastdate,regexExp=/\d+/g;
   //  console.log(uname+','+todate+','+fromdate);
     //(uname==='')?regexSkill ='.*?':regexSkill = new RegExp("\\b(?:"+skills+")\\b", "gi");
-   (uname==='')?regexUname = '.*?':regexUname = new RegExp("\\b(?:"+uname+")\\b", "gi");
-   (todate==='')?regexInitdate = '.*?':regexInitdate = new RegExp("\\b(?:"+todate+")\\b", "gi");
-    (fromdate==='')?regexLastdate = '.*?':regexLastdate = new RegExp("\\b(?:"+fromdate+")\\b", "gi");
+   // (uname==='')?regexUname = '.*?':regexUname = new RegExp("\\b(?:"+uname+")\\b", "gi");
+   // (todate==='')?regexInitdate = '.*?':regexInitdate = new RegExp("\\b(?:"+todate+")\\b", "gi");
+   //  (fromdate==='')?regexLastdate = '.*?':regexLastdate = new RegExp("\\b(?:"+fromdate+")\\b", "gi");
     // (experience==='')?strExp=undefined:strExp=experience;
   //  console.log(regexLoc+','+regexExp+','+regexSkill+','+regexCname);
-console.log(regexUname+','+regexInitdate+','+regexLastdate);
+//console.log(regexUname+','+regexInitdate+','+regexLastdate);
   //});
 //  console.log('count:'+count);
   //}).catch(err=>console.log('ERROR:'+err));
+
+  fetch(`https://api.github.com/users/${uname}/repos`).then(response=>response.json()).then(item=>{
+    console.log(item);
+
+  }).catch(err=>console.log('ERROR:'+err));
   }
   getJobDetails(jcn,jtitle,jd,jloc,jskill,jsal,jexp,japply,jlink){
     let jobDataTag=document.createElement('p');
