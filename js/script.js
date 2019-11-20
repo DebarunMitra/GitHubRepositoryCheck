@@ -3,23 +3,47 @@
 // Objective: Create a front end application for job search
 class Jobsearch{
   getSearchResult(uname,todate,fromdate){
-//    const monthNo={"Jan":1,"Feb":2,"Mar":3,"Apr":4,"May":5,"Jun":6,"Jul":7,"Aug":8,"Sep":9,"Oct":10,"Nov":11,"Dec":12};
-  //  let count=0,regexUname,regexInitdate,regexLastdate,regexExp=/\d+/g;
-  //  console.log(uname+','+todate+','+fromdate);
-    //(uname==='')?regexSkill ='.*?':regexSkill = new RegExp("\\b(?:"+skills+")\\b", "gi");
-   // (uname==='')?regexUname = '.*?':regexUname = new RegExp("\\b(?:"+uname+")\\b", "gi");
-   // (todate==='')?regexInitdate = '.*?':regexInitdate = new RegExp("\\b(?:"+todate+")\\b", "gi");
-   //  (fromdate==='')?regexLastdate = '.*?':regexLastdate = new RegExp("\\b(?:"+fromdate+")\\b", "gi");
-    // (experience==='')?strExp=undefined:strExp=experience;
-  //  console.log(regexLoc+','+regexExp+','+regexSkill+','+regexCname);
-//console.log(regexUname+','+regexInitdate+','+regexLastdate);
-  //});
-//  console.log('count:'+count);
-  //}).catch(err=>console.log('ERROR:'+err));
+    let repoCount=0,projects=[],
+        userDD=todate.split('-')[2],
+        userMM=todate.split('-')[1],
+        userYY=todate.split('-')[0];
+        //console.log(todate);
+        //console.log('user: '+userDD+'-'+userMM+'-'+userYY);
+  fetch(`https://api.github.com/users/${uname}/repos`).then(response=>response.json()).then(repo=>{
+    repo.map(data=>{
+      let dd,mm,yy,dateStr,date;
+      dateStr=data.created_at.split('T');
+      dd=dateStr[0].split('-')[2];
+      mm=dateStr[0].split('-')[1];
+      yy=dateStr[0].split('-')[0];
+      console.log(dd+'-'+mm+'-'+yy);
+      if(yy===userYY && mm>=userMM)
+      {
+        repoCount++;
+        projects.push(data.name);
+      }
+    });
+    console.log(projects);
+    console.log(repoCount);
+    console.log(projects[7]);
+    projects.map(async project=>{
+      await fetch(`https://api.github.com/repos/${uname}/${project}/stats/contributors`).then(response=>response.json())
+        .then(async pro=>{
+          let value=await pro;
+          if(value[0].length===1){
+            console.log(value[0].total);
+          }
+          else{
 
-  fetch(`https://api.github.com/users/${uname}/repos`).then(response=>response.json()).then(item=>{
-    console.log(item);
+          }
+        });
+    })
 
+    // fetch(`https://api.github.com/repos/${uname}/${project[7]}/stats/contributors`).then(response=>response.json())
+    //   .then(async pro=>{
+    //     let value=await pro;
+    //     console.log(value);
+    //   });
   }).catch(err=>console.log('ERROR:'+err));
   }
   getJobDetails(jcn,jtitle,jd,jloc,jskill,jsal,jexp,japply,jlink){
