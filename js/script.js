@@ -67,19 +67,11 @@ class Jobsearch{
          }
       //  console.log(project+': '+commit);
         document.getElementById('tc').innerHTML='Commits: '+commit;
+        document.getElementById('noOfLines').innerHTML='Additions: '+lines;
       //  console.log(value);
       });
 
     });
-
-    // projects.map(project=>{
-    //   fetch('https://api.github.com/repos/${uname}/u/stats/contributors')
-    //       .then(response => response.json())
-    //       .then(contributors => contributors
-    //
-    //
-    // });
-
   }).catch(err=>console.log('ERROR:'+err));
   }
   getJobDetails(jcn,jtitle,jd,jloc,jskill,jsal,jexp,japply,jlink){
