@@ -38,30 +38,23 @@ class Jobsearch{
     // console.log(repoCount);
     // console.log(projects[7]);
     projects.map(async project=>{
-      await fetch(`https://api.github.com/repos/${uname}/${project}/stats/commit_activity`).then(response=>response.json())
+      await fetch(`https://api.github.com/repos/${uname}/${project}/stats/contributors`).then(response=>response.json())
         .then(async pro=>{
         //  console.log(pro);
-           let value=await pro;
-           value.forEach((val,key)=>{
-             if(val.total){
-              commit+=val.total;
-             }
-           });
-           console.log(commit);
-          // console.log(value.length);
-          // if(value.length===1){
-          //  console.log(value[0]);
-          //  commit+=value[0].total;
-          // // console.log(commit);
-          // }
-          // else{
-          //   console.log(value[1]);
-          //   commit+=value[1].total;
-          // }
-          // console.log(commit);
-        //  document.getElementById('tc').innerHTML='Commits: '+commit;
-        });
-    })
+        // console.log(value.length);
+         let value=await pro;
+         if(value.length===1){
+          console.log(value[0]);
+          commit+=value[0].total;
+         }
+         else{
+           console.log(value[1]);
+           commit+=value[1].total;
+         }
+        console.log(commit);
+        document.getElementById('tc').innerHTML='Commits: '+commit;
+      });
+    });
 
     // fetch(`https://api.github.com/repos/${uname}/${project[7]}/stats/contributors`).then(response=>response.json())
     //   .then(async pro=>{
