@@ -3,7 +3,7 @@
 // Objective: Create a front end application for job search
 class Jobsearch{
   getSearchResult(uname,todate,fromdate){
-    let repoCount=0,projects=[],commit=0,
+    let repoCount=0,projects=[],commit=0,lines=0,
         userDD=todate.split('-')[2],
         userMM=todate.split('-')[1],
         userYY=todate.split('-')[0];
@@ -37,22 +37,48 @@ class Jobsearch{
     // console.log(projects);
     // console.log(repoCount);
     // console.log(projects[7]);
-    projects.map(async project=>{
-      await fetch(`https://api.github.com/repos/${uname}/${project}/stats/contributors`).then(response=>response.json())
+    projects.map(project=>{
+       fetch(`https://api.github.com/repos/${uname}/${project}/stats/contributors`).then(response=>response.json())
         .then(async pro=>{
+        //  console.log(project);
+        //  await console.log(pro);
          let value=await pro;
          if(value.length===1){
           console.log(value[0]);
-          commit+=value[0].total;
+           commit+=value[0].total;
+           lines+=value[0].weeks.reduce((lineCount, week) =>lineCount + week.a, 0);//-week.d
+           console.log(lines);
          }
          else{
-           console.log(value[1]);
-           commit+=value[1].total;
+           value.filter(name=>{
+                          //   console.log(name);
+             if(name.author.login===uname)
+             {
+                console.log(name);
+                commit+=name.total;
+                lines+=name.weeks.reduce((lineCount, week) =>lineCount + week.a, 0);//-week.d
+                console.log(lines);
+             }
+             else{
+              // console.log(name);
+               commit+=0;
+             }
+             });
          }
-        console.log(commit);
+      //  console.log(project+': '+commit);
         document.getElementById('tc').innerHTML='Commits: '+commit;
+      //  console.log(value);
       });
+
     });
+
+    // projects.map(project=>{
+    //   fetch('https://api.github.com/repos/${uname}/u/stats/contributors')
+    //       .then(response => response.json())
+    //       .then(contributors => contributors
+    //
+    //
+    // });
 
   }).catch(err=>console.log('ERROR:'+err));
   }
