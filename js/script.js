@@ -3,39 +3,63 @@
 // Objective: Create a front end application for job search
 class Jobsearch{
   getSearchResult(uname,todate,fromdate){
-    let repoCount=0,projects=[],
+    let repoCount=0,projects=[],commit=0,
         userDD=todate.split('-')[2],
         userMM=todate.split('-')[1],
         userYY=todate.split('-')[0];
         //console.log(todate);
         //console.log('user: '+userDD+'-'+userMM+'-'+userYY);
+        fetch(`https://api.github.com/users/${uname}`)
+          .then(response=>response.json()).then(user=>{
+            document.getElementById('name').innerHTML= user.name;
+            document.getElementById('status').innerHTML= user.location;
+            document.getElementById('profileImg').src= user.avatar_url;
+            //console.log(typeof(user.avatar_url));
+            //img. user.avatar_url;
+          });
+
   fetch(`https://api.github.com/users/${uname}/repos`).then(response=>response.json()).then(repo=>{
     repo.map(data=>{
       let dd,mm,yy,dateStr,date;
+      //console.log(data);
       dateStr=data.created_at.split('T');
       dd=dateStr[0].split('-')[2];
       mm=dateStr[0].split('-')[1];
       yy=dateStr[0].split('-')[0];
-      console.log(dd+'-'+mm+'-'+yy);
+      //console.log(dd+'-'+mm+'-'+yy);
       if(yy===userYY && mm>=userMM)
       {
         repoCount++;
         projects.push(data.name);
       }
     });
-    console.log(projects);
-    console.log(repoCount);
-    console.log(projects[7]);
+    document.getElementById('rno').innerHTML='Repository: '+repoCount;
+    // console.log(projects);
+    // console.log(repoCount);
+    // console.log(projects[7]);
     projects.map(async project=>{
-      await fetch(`https://api.github.com/repos/${uname}/${project}/stats/contributors`).then(response=>response.json())
+      await fetch(`https://api.github.com/repos/${uname}/${project}/stats/commit_activity`).then(response=>response.json())
         .then(async pro=>{
-          let value=await pro;
-          if(value[0].length===1){
-            console.log(value[0].total);
-          }
-          else{
-
-          }
+        //  console.log(pro);
+           let value=await pro;
+           value.forEach((val,key)=>{
+             if(val.total){
+              commit+=val.total;
+             }
+           });
+           console.log(commit);
+          // console.log(value.length);
+          // if(value.length===1){
+          //  console.log(value[0]);
+          //  commit+=value[0].total;
+          // // console.log(commit);
+          // }
+          // else{
+          //   console.log(value[1]);
+          //   commit+=value[1].total;
+          // }
+          // console.log(commit);
+        //  document.getElementById('tc').innerHTML='Commits: '+commit;
         });
     })
 
@@ -94,7 +118,7 @@ let search=document.getElementById('search');
  //if(uname.value!=='' && todate.value!=='' && fromdate.value!=='')
   //{
     search.addEventListener('click',function(){
-      document.getElementById('jobContent').innerHTML="";
+  //    document.getElementById('jobContent').innerHTML="";
       js.getSearchResult(uname.value,todate.value,fromdate.value);
     //  const jso=new Jobsearch();
       //jso.getJobDetails();
